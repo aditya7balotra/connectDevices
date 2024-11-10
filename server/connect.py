@@ -1,5 +1,5 @@
 import socket
-from features import chat
+from features import chat, share
 import threading
 
 class server:
@@ -42,5 +42,17 @@ class server:
             # rcv1 = chat_obj.receive()
             
             # print(f'{chat_obj.name}: {rcv1}')
-        
+        elif feature == 'share':
+            share_obj = share(self.client)
+            # receiving the share type
+            share_type = self.client.recv(10).decode('utf-8')
+            
+            
+            if share_type == 'recv':
+                # means the client is receiving and the server has to send something
+                dire = input('Enter directory with / slashes: ')
+                send_obj = share_obj.send(dire)
+            elif share_type == 'send':
+                # means the client is sending and the server has to receive something
+                share_obj.receive()
     
