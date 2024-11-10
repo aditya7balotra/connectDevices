@@ -1,5 +1,5 @@
 import socket
-from features import chat
+from features import chat, share_all_photos
 import threading
 
 class client:
@@ -12,6 +12,7 @@ class client:
         print('=====')
         print(f'connecting to {self.ip}/{self.port}')
         self.client_socket.connect((self.ip, self.port))
+        self.client_socket.settimeout(30)
         print('connection successfull')
         print('=====')
         print(self.client_socket.recv(1024).decode('utf-8'))
@@ -27,6 +28,7 @@ class client:
         # sending the feature name to the server
         self.client_socket.send(featureName.encode('utf-8'))
         
+        # taking actions according to the feature name
         if featureName == 'chat':
             chat_obj = chat('CLIENT', self.client_socket)
             
@@ -37,5 +39,18 @@ class client:
             # msg1 = input('Your first message: ')
             # print(chat_obj.send())
             
-    
+        elif featureName == 'photos':
+            ph_obj = share_all_photos(self.client_socket)
+            s_type = input('Enter to send or recv: ')
+            
+            # sending the share_type
+            self.client_socket.send(s_type.encode('utf-8'))
+            
+            if s_type == 'recv':
+                # means the client has to receive
+                ph_obj.receive()
+            elif s_type == 'send':
+                # means the client has to send
+                img_dir = input('Enter the images directory: ')
+                ph_obj.send(img_dir)
     

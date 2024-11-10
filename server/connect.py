@@ -1,5 +1,5 @@
 import socket
-from features import chat
+from features import chat, share_all_photos
 import threading
 
 class server:
@@ -43,4 +43,15 @@ class server:
             
             # print(f'{chat_obj.name}: {rcv1}')
         
-    
+        elif feature == 'photos':
+            ph_obj = share_all_photos(self.client)
+            # receiving the share type
+            s_type = self.client.recv(10).decode('utf-8')
+            
+            if s_type == 'recv':
+                # means the server end has to send
+                img_dir = input('Enter the images directory: ')
+                ph_obj.send(img_dir)
+            elif s_type == 'send':
+                # means the client end has to send
+                ph_obj.receive()
