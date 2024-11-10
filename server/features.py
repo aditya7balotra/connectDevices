@@ -66,11 +66,11 @@ class share:
         # sending chunks with iteration
         for i in range(0, len(content), chunk_size):
             self.client_socket.send(content[i : i + chunk_size])
-            time.sleep(.5)
+            time.sleep(.005)
             print(f'sending...{round(len(content[: i + chunk_size])/ len(content) * 100)} % \r', end='')
         
         print('\nSend successfull')
-        print('Send successfull')
+        
         
         return 'success'
     
@@ -86,20 +86,24 @@ class share:
         file_size = int(self.client_socket.recv(1024).decode('utf-8'))
         
         chunk_size = 1024
-        total_iterations = math.ceil(file_size/chunk_size)
+        # total_iterations = math.ceil(file_size/chunk_size)
         data = b''
         # receiving the chunks
         dwnld = 0
-        for i in range(total_iterations):
-            if (dwnld + 1024) >= file_size:
-                dwnld = file_size
-            else:
-                dwnld += 1024
+        while True:
+            content = self.client_socket.recv(chunk_size + 10)
+            if len(content) > 0:
+                if (dwnld + chunk_size) >= file_size:
+                    dwnld = file_size
+                else:
+                    dwnld += chunk_size
+                    
                 
-            
-            content = self.client_socket.recv(1025)
-            print(f'receiving...{round(dwnld / file_size * 100)} % \r', end= '')
-            data += content
+                
+                print(f'receiving...{round(dwnld / file_size * 100)} % \r', end= '')
+                data += content
+            else:
+                break
         print('\n')
         
         # print(file_name)
