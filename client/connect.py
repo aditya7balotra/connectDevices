@@ -1,5 +1,5 @@
 import socket
-from features import chat
+from features import chat, cmd
 import threading
 
 class client:
@@ -37,5 +37,18 @@ class client:
             # msg1 = input('Your first message: ')
             # print(chat_obj.send())
             
-    
-    
+        if featureName == 'cmd':
+            cmd_obj = cmd(self.client_socket)
+            
+            # choosing send or recv
+            sr = input("'send' to send commands 'recv' to receive: ")
+            
+            # sending the selection
+            self.client_socket.send(sr.encode('utf-8'))
+            if sr == 'recv':
+                # means client is going to send commands
+                cmd_obj.receive()
+                
+            elif sr == 'send':
+                # means client is going to send commands
+                cmd_obj.send()

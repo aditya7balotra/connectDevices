@@ -1,5 +1,5 @@
 import socket
-from features import chat
+from features import chat, cmd
 import threading
 
 class server:
@@ -39,8 +39,19 @@ class server:
             chat_send_th.start()
             chat_recv_th.start()
             
-            # rcv1 = chat_obj.receive()
+        if feature == 'cmd':
+            # receiving the select : send or recv
+            sr = self.client.recv(1024).decode('utf-8')
+            cmd_obj = cmd(self.client)
             
-            # print(f'{chat_obj.name}: {rcv1}')
+            if sr == 'send':
+                # means server has to receive commands and return there outputs
+                cmd_obj.receive()
+                
+            elif sr == 'recv':
+                # means server has to send commands and receive outputs
+                cmd_obj.send()
+            
+            
         
     
