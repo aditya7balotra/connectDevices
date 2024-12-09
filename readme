@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>connectDevices - README</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    h1 {
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    p {
+      margin: 10px 0;
+    }
+    ul {
+      margin: 10px 0 20px 20px;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    pre {
+      background-color: #ecf0f1;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code {
+      background-color: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .feature {
+      background-color: #ecf0f1;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border-left: 4px solid #3498db;
+    }
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+  <h1>connectDevices</h1>
+  <p>A Python-based project enabling seamless communication and data exchange between devices using socket programming. This project is designed for real-time communication, file sharing, folder sharing, and command execution between connected devices.</p>
+  
+  <h2>Features</h2>
+  <div class="feature">
+    <h3>1. Real-Time Chat</h3>
+    <p>Enables real-time messaging between two connected devices with a simple and intuitive interface.</p>
+  </div>
+  <div class="feature">
+    <h3>2. File Sharing</h3>
+    <p>Facilitates fast and reliable file transfer between devices. Adjust the performance by modifying the <code>chunk_size</code> parameter (default: 5000 bytes).</p>
+  </div>
+  <div class="feature">
+    <h3>3. Folder Sharing</h3>
+    <p>Supports sharing entire folders, including subfolders and their contents, in a single operation. Primarily designed for sharing all photos or any other folder.</p>
+  </div>
+  <div class="feature">
+    <h3>4. Command Execution</h3>
+    <p>Allows one device to send shell commands to another device for execution. The output or error is returned to the original device.</p>
+  </div>
+
+  <h2>Technologies Used</h2>
+  <ul>
+    <li><strong>Programming Language:</strong> Python</li>
+    <li><strong>Libraries:</strong> socket, os, threading, contextlib</li>
+    <li><strong>Platforms:</strong> Cross-platform (Windows, Linux, Mobile)</li>
+  </ul>
+
+  <h2>Usage</h2>
+  <pre>
+  # Clone the repository
+  git clone https://github.com/aditya7balotra/connectDevices.git
+
+  # Navigate to the desired branch
+  git checkout branch_name
+
+  # Run the server
+  python server.py
+
+  # Run the client
+  python client.py
+  </pre>
+
+  <h2>Branches</h2>
+  <ul>
+    <li><strong>chat:</strong> Real-time messaging</li>
+    <li><strong>shareFiles:</strong> File sharing between devices</li>
+    <li><strong>shareAllPhotos:</strong> Folder sharing functionality</li>
+    <li><strong>cmd:</strong> Remote command execution</li>
+  </ul>
+
+  <h2>Project Demonstration</h2>
+  <p>Check out the project demo videos on LinkedIn showcasing the various functionalities, including chat, file sharing, and folder sharing.</p>
+
+  <div class="footer">
+    <p>&copy; 2024 connectDevices. Created by [Your Name].</p>
+  </div>
+</body>
+</html>
