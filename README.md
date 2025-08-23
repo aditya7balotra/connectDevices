@@ -44,7 +44,7 @@ cd connectDevices
 git checkout [branch_name]
 
 # Run the server
-python server.py
+python server/run.py
 
 # Run the client
-python client.py
+python client/run.py
